@@ -1,3 +1,6 @@
+using LibraryMS.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace LibraryMS
 {
     public class Program
@@ -8,6 +11,9 @@ namespace LibraryMS
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ApplicationDbContext>(
+                   options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+            );
 
             var app = builder.Build();
 
